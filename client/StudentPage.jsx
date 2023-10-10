@@ -1,20 +1,7 @@
-import { useState } from "react";
+import {useState} from "react";
 
-export function StudentPage() {
-  const [students, setStudents] = useState([
-    {
-      name: "Jovana",
-      studentProgram: "Programming",
-    },
-    {
-      name: "Johan",
-      studentProgram: "Drama",
-    },
-    {
-      name: "William",
-      studentProgram: "Frontend",
-    },
-  ]);
+export function StudentPage({students}) {
+
 
   return (
     <>
@@ -34,15 +21,13 @@ function StudentListing(props) {
   );
 }
 
-export function AddNewStudent() {
+export function AddNewStudent({onNewStudent}) {
   const [name, setName] = useState();
   const [studyProgram, setStudyProgram] = useState();
-  const addNewStudent = { name, studyProgram };
-
   function handleNewStudent(event) {
     //Når du trykker submit så handler
     event.preventDefault();
-    setStudents(addNewStudent);
+    onNewStudent({name, studyProgram});
   }
   return (
     <>
@@ -66,7 +51,7 @@ export function AddNewStudent() {
           />
         </div>
         <button>Submit</button>
-        <pre>{JSON.stringify(addNewStudent, null, " ")}</pre>
+        <pre>{JSON.stringify({name, studyProgram}, null, " ")}</pre>
       </form>
     </>
   );
