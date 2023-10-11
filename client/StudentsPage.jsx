@@ -1,9 +1,9 @@
-import {useState} from "react";
+import { useState } from "react";
 
-export function StudentPage({students}) {
-
+export function StudentsPage({ students }) {
   return (
-      //For hver student gjør det her..
+    //For hver student gjør det her..
+    //når man først får students inn her, så vil det vøre undefined
     <>
       <h1>The Students of Kristiania</h1>
       {students.map((student) => (
@@ -13,7 +13,7 @@ export function StudentPage({students}) {
   );
 }
 
-function StudentListing({students}) {
+function StudentListing({ students }) {
   return (
     <div>
       {students.name + ":"} {students.program}
@@ -21,15 +21,15 @@ function StudentListing({students}) {
   );
 }
 
-export function AddNewStudent({onNewStudent}) {
+export function AddNewStudent({ onNewStudent }) {
   const [name, setName] = useState();
   const [studyProgram, setStudyProgram] = useState();
-  const newStudent = {name, studyProgram};
+  const newStudent = { name, studyProgram };
 
   function handleSubmitNewStudent(event) {
     //Når du trykker submit så handler
     event.preventDefault();
-    onNewStudent({name, studyProgram});
+    onNewStudent({ name, studyProgram });
   }
   return (
     <>
