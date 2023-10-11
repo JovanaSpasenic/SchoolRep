@@ -1,5 +1,4 @@
 import express from "express";
-import { MongoClient } from "mongodb";
 
 const app = express();
 
@@ -14,13 +13,5 @@ app.post("/api/students", (req, res) => {
     res.send();
 });
  */
-
-const url = process.env.MONGODB_URL;
-const client = new MongoClient(url);
-
-client.connect().then((connection) => {
-  const db = connection.db("studentdatabase");
-  functionName(db);
-});
 
 app.listen(process.env.PORT || 3000);
