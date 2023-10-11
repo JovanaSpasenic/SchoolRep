@@ -2,21 +2,21 @@ import {useState} from "react";
 
 export function StudentPage({students}) {
 
-
   return (
+      //For hver student gjør det her..
     <>
       <h1>The Students of Kristiania</h1>
       {students.map((student) => (
-        <StudentListing name={student.name} program={student.studentProgram} />
+        <StudentListing name={student.name} program={student.studyProgram} />
       ))}
     </>
   );
 }
 
-function StudentListing(props) {
+function StudentListing({students}) {
   return (
     <div>
-      {props.name + ":"} {props.program}
+      {students.name + ":"} {students.program}
     </div>
   );
 }
@@ -24,14 +24,16 @@ function StudentListing(props) {
 export function AddNewStudent({onNewStudent}) {
   const [name, setName] = useState();
   const [studyProgram, setStudyProgram] = useState();
-  function handleNewStudent(event) {
+  const newStudent = {name, studyProgram};
+
+  function handleSubmitNewStudent(event) {
     //Når du trykker submit så handler
     event.preventDefault();
     onNewStudent({name, studyProgram});
   }
   return (
     <>
-      <form onSubmit={handleNewStudent}>
+      <form onSubmit={handleSubmitNewStudent}>
         <h2>Add a new Student</h2>
         <div>
           Name: <br />
@@ -51,7 +53,7 @@ export function AddNewStudent({onNewStudent}) {
           />
         </div>
         <button>Submit</button>
-        <pre>{JSON.stringify({name, studyProgram}, null, " ")}</pre>
+        <pre>{JSON.stringify(newStudent, null, " ")}</pre>
       </form>
     </>
   );
